@@ -1,7 +1,5 @@
 site_name: H-hat quantum programming language
-
 site_url: https://docs.hhat-lang.org/
-
 repo_url: "https://github.com/hhat-lang/hhat_lang/"
 repo_name: hhat-lang/hhat_lang
 
@@ -36,17 +34,23 @@ nav:
 
 markdown_extensions:
   - abbr
-  - attr_list
-  - def_list
-  - admonition
-  - footnotes
-  - md_in_html
   - pymdownx.inlinehilite
   - pymdownx.betterem:
       smart_enable: all
   - pymdownx.caret
   - pymdownx.details
   - pymdownx.snippets
+  - attr_list
+  - def_list
+  - admonition
+  - footnotes
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      options:
+        custom_icons:
+          - overrides/.icons
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.highlight:
@@ -56,12 +60,6 @@ markdown_extensions:
       pygments_lang_class: true
       use_pygments: true
       noclasses: false
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
-      options:
-        custom_icons:
-          - overrides/.icons
   - pymdownx.superfences:
       custom_fences:
         - name: python
@@ -77,7 +75,6 @@ markdown_extensions:
       permalink: true
 
 plugins:
-  - privacy
   - search
   - hhat-heather-pygments
   - blog:
@@ -96,6 +93,7 @@ plugins:
         - Thoughts
   - meta
   - tags
+  #- privacy      #this plugin is breaking local build, need to investigate
 
 
 extra_javascript:
@@ -106,37 +104,33 @@ extra_css:
 
 theme:
   name: material
+  logo: assets/icon_light.svg  # Default svg icon for light theme
+  favicon: assets/favicon-32-c.ico # browser tab icon
   font:
-    text: Lato
-    code: JetBrains Mono
-  logo: hhat_logo.svg
-  favicon: hhat_logo.ico
-  features:
-    - navigation.sections
-    - navigation.tabs
-    - navigation.top
-    - navigation.indexes
-    - navigation.tabs.sticky
-    - content.tooltips
-    - content.code.annotate
-    - content.code.copy
-    - toc.follow
+    text: Lexend
+    code: Space Mono
   palette:
-    - media: "(prefers-color-scheme)"
-      toggle:
-        icon: material/brightness-auto
-        name: Switch to preferred mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: teal
-      accent: deep purple
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: amber
-      accent: teal
+      primary: custom
+      accent: custom
       toggle:
-        icon: material/brightness-1
+        icon: material/brightness-2
         name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - content.tooltips
+    - content.code.annotate
+    - toc.follow
+    #- navigation.indexes          #unnecessary for UI
+    #- navigation.tabs.sticky      #not needed
+ 
