@@ -1,5 +1,5 @@
 
-# H-hat quantum language
+# H-hat Quantum Language
 
 [![Unitary Foundation](https://img.shields.io/badge/Supported%20By-Unitary%20Foundation-FFFF00.svg)](https://unitary.foundation)
 [![Discord Chat](https://img.shields.io/badge/dynamic/json?color=blue&label=Discord&query=approximate_presence_count&suffix=%20online.&url=https%3A%2F%2Fdiscord.com%2Fapi%2Finvites%2FJqVGmpkP96%3Fwith_counts%3Dtrue)](http://discord.unitary.foundation)
@@ -10,7 +10,7 @@
     tons of experimentation are modifications are happening. Until the version 0.3 is released, it is prone to breaking changes.
 
 
-*H-hat is a rule system, compiler framework, and a statically typed, functional and distributed system inspired, quantum programming language.*
+H-hat is a rule system, compiler framework, and a statically typed, functional and distributed system inspired, quantum programming language.
 
 It aims to support explicit function overloading, algebraic data types, ownership and RAII-like features, strict and lazy evaluation, reflective cast, metaprogramming, structured typing-like approach, concurrency, backend kind-based types (CPU and QPU), and multi-architecture targeting computation (e.g. CPU: x86_64, aarch64; gate- and analog-based QPU: superconducting, trapped ion, neutral atoms, photonics, etc.)
 
