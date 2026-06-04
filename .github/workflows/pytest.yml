@@ -2,7 +2,7 @@ name: pytest
 
 on:
   push:
-    branches: [main, dev/python]
+    branches: [main, dev/python, ci-workflows-update]
   pull_request:
     branches: [main, dev/python]
 
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.12"]
+        python-version: ["3.12", "3.13"]
 
     steps:
       - uses: actions/checkout@v3
