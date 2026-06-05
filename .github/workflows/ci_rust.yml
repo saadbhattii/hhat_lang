@@ -2,11 +2,9 @@ name: ci_rust
 
 on:
   push:
-    branches:
-      - branches: [main, ci-workflows-update]
+    branches: [main, ci-workflows-update]
   pull_request:
-    branches:
-      - "**"
+    branches: "**"
 
 permissions:
   contents: read
