@@ -1,0 +1,39 @@
+name: ci_rust_audit
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  push:
+    branches:
+      - main
+    paths:
+      - 'rust/**/Cargo.toml'
+      - 'rust/**/Cargo.lock'
+      - '.github/workflows/ci_rust_audit.yml'
+  pull_request:
+    branches:
+      - "**"
+    paths:
+      - 'rust/**/Cargo.toml'
+      - 'rust/**/Cargo.lock'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  checks: write
+
+defaults:
+  run:
+    shell: bash
+    working-directory: rust/hhat_lang
+
+jobs:
+  audit:
+    name: Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: rustsec/audit-check@v2.0.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
