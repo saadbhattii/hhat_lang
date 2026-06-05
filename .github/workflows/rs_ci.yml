@@ -1,13 +1,19 @@
-name: ci_rust
+name: rs_ci
 
 on:
   push:
-    branches: 
+    branches:
       - main
       - ci-workflows-update
+    paths:
+      - 'rust/**'
+      - '.github/workflows/rs_ci.yml'
   pull_request:
     branches:
       - "**"
+    paths:
+      - 'rust/**'
+      - '.github/workflows/rs_ci.yml'
 
 permissions:
   contents: read

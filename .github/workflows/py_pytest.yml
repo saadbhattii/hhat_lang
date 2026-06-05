@@ -1,0 +1,40 @@
+name: py_pytest
+
+on:
+  push:
+    branches: [main, dev/python, ci-workflows-update]
+    paths:
+      - 'python/**'
+      - '.github/workflows/py_pytest.yml'
+  pull_request:
+    branches: [main, dev/python]
+    paths:
+      - 'python/**'
+      - '.github/workflows/py_pytest.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Run pytest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        working-directory: python
+        run: |
+          pip install ".[all,dev]"
+      - name: Run tests
+        working-directory: python
+        run: |
+          pytest .
