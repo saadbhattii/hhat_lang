@@ -2,7 +2,7 @@ name: pytest
 
 on:
   push:
-    branches: [main, dev/python, ci-workflows-update]
+    branches: [main, dev/python]
   pull_request:
     branches: [main, dev/python]
 
