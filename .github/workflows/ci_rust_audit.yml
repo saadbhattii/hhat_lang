@@ -34,6 +34,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      # cargo.lock is not committed to the repo; generating it before audit, as the audit fails without cargo lock (tested)
+      # if cargo.lock is added to the repo in the future, this step can be removed.
+      - run: cargo generate-lockfile
       - uses: rustsec/audit-check@v2.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
