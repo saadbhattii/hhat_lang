@@ -1,0 +1,49 @@
+name: rs_check-audit
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  push:
+    branches:
+      - main
+    paths:
+      - 'rust/**/Cargo.toml'
+      - 'rust/**/Cargo.lock'
+      - '.github/workflows/rs_check-audit.yml'
+  pull_request:
+    branches:
+      - "**"
+    paths:
+      - 'rust/**/Cargo.toml'
+      - 'rust/**/Cargo.lock'
+      - '.github/workflows/rs_check-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  checks: write
+
+defaults:
+  run:
+    shell: bash
+    working-directory: rust/hhat_lang
+
+jobs:
+  audit:
+    name: Audit
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      # cargo.lock is not committed to the repo; generating it before audit, as the audit fails without cargo lock (tested)
+      # if cargo.lock is added to the repo in the future, this step can be removed.
+      - run: cargo generate-lockfile
+      - uses: rustsec/audit-check@v2.0.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          working-directory: rust/hhat_lang
